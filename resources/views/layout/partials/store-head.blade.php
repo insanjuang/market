@@ -18,7 +18,8 @@
 <!-- Plugins CSS File -->
 <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url('assets/plugins/owlcarousel/owl.carousel.min.css')}}">
-{{-- <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css"> --}}
+<link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url('assets/css/plugins/nouislider/nouislider.css')}}">
 <!-- Main CSS File -->
 <link rel="stylesheet" href="{{url('assets/css/store-style.css')}}">
 <link rel="stylesheet" href="{{url('assets/css/store-skin.css')}}">

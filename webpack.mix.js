@@ -161,5 +161,9 @@ const folder = {
     mix.copy('node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js', 'public/assets/plugins/bootstrap-input-spinner');
     mix.copy('node_modules/jquery-hoverintent/jquery.hoverIntent.min.js', 'public/assets/plugins/jquery-hoverintent');
     mix.copy('node_modules/superfish/dist/js/superfish.min.js', 'public/assets/plugins/superfish');
+    mix.copy('node_modules/magnific-popup/dist', 'public/assets/plugins/magnific-popup');
+    mix.copy('node_modules/nouislider/dist', 'public/assets/plugins/nouislider');
+
+
 
 

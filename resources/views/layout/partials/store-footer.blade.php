@@ -2,7 +2,7 @@
             <div class="footer-middle">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-md-12 col-lg-6">
                             <div class="widget widget-about">
                                 <img src="{{ URL::asset('/assets/img/logo-white.png')}}" class="footer-logo" alt="Footer Logo"
                                     width="105" height="25">

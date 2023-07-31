@@ -12,11 +12,11 @@ class Images extends Model
     protected $table = 'produk_image';
     protected $primaryKey = 'id';
     protected $fillable = [
-    'url', 'id_produk'
+        'url', 'id_produk'
     ];
 
     public function product()
     {
-    return $this->belongsTo('Product', 'id_produk');
+        return $this->belongsTo('Product', 'id_produk');
     }
 }

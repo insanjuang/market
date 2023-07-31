@@ -1,9 +1,9 @@
 <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-12 col-lg-6">
                 <div class="banner banner-overlay banner-overlay-light">
                     <a href="#">
-                        <img src="assets/images/demos/demo-4/banners/banner-1.png" alt="Banner">
+                        <img src="{{URL::asset('/assets/img/store/banner/banner-1.png')}}" alt="Banner">
                     </a>
 
                     <div class="banner-content">

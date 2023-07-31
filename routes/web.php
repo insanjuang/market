@@ -26,6 +26,8 @@ Route::get('/', function () {
 });
 
 Route::get('/store',[StoreController::class,'index'])->name('store');
+Route::get('/store/product',[StoreController::class,'product'])->name('store.product');
+Route::get('/store/product/{id}',[StoreController::class,'productDetail'])->name('store.productDetail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

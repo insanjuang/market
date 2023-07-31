@@ -10,6 +10,8 @@
 <script src="{{URL::asset('/assets/plugins/superfish/superfish.min.js')}}"></script>
 <!-- Owl JS -->
 <script src="{{ URL::asset('/assets/plugins/owlcarousel/owl.carousel.min.js')}}"></script>
+<script src="{{ URL::asset('/assets/plugins/nouislider/nouislider.js')}}"></script>
+<script src="{{ URL::asset('/assets/plugins/magnific-popup/magnific-popup.js')}}"></script>
 
 <script src="{{ URL::asset('/assets/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js')}}"></script>
 <script src="{{ URL::asset('/assets/js/jquery.plugin.min.js')}}"></script>

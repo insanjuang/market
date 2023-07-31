@@ -5,7 +5,7 @@ $(document).ready(function () {
 	if ( $.fn.countdown ) {
     	// Deal of the day countdown
 		$('.daily-deal-countdown').each(function () {
-			var $this = $(this), 
+			var $this = $(this),
 				untilDate = $this.data('until'),
 				compact = $this.data('compact');
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 		// Offer countdown
 		$('.offer-countdown').each(function () {
-			var $this = $(this), 
+			var $this = $(this),
 				untilDate = $this.data('until'),
 				compact = $this.data('compact');
 
@@ -40,4 +40,14 @@ $(document).ready(function () {
 		// Pause
 		// $('.offer-countdown').countdown('pause');
 	}
+
+    $('#newProductTab a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+    $('#trendingTab a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
 });
