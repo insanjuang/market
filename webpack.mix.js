@@ -163,6 +163,12 @@ const folder = {
     mix.copy('node_modules/superfish/dist/js/superfish.min.js', 'public/assets/plugins/superfish');
     mix.copy('node_modules/magnific-popup/dist', 'public/assets/plugins/magnific-popup');
     mix.copy('node_modules/nouislider/dist', 'public/assets/plugins/nouislider');
+    mix.copy('node_modules/elevatezoom-scale/jquery.elevatezoom.js', 'public/assets/plugins/jquery-elevateZoom');
+    mix.copy('node_modules/wnumb/wNumb.js', 'public/assets/plugins/wnumb');
+    mix.copy('node_modules/mapbox-gl-geocoder/dist', 'public/assets/plugins/mapbox-gl-geocoder');
+
+
+
 
 
 

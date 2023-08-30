@@ -28,6 +28,13 @@ Route::get('/', function () {
 Route::get('/store',[StoreController::class,'index'])->name('store');
 Route::get('/store/product',[StoreController::class,'product'])->name('store.product');
 Route::get('/store/product/{id}',[StoreController::class,'productDetail'])->name('store.productDetail');
+Route::get('/store/cart',[StoreController::class,'cartList'])->name('store.cartList');
+Route::post('/store/cart',[StoreController::class,'addToCart'])->name('store.addToCart');
+Route::delete('/store/cart/{id}',[StoreController::class,'removeCart'])->name('store.removeCart');
+Route::get('/store/checkout',[StoreController::class,'checkout'])->name('store.checkout');
+Route::post('/store/shipping_price',[StoreController::class,'getShippingPrice'])->name('store.getShippingPrice');
+Route::post('/store/checkout',[StoreController::class,'saveCheckout'])->name('store.postCheckout');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -61,6 +61,7 @@
         "jquery.flot": "^0.8.3",
         "laravel-file-uploader": "^2.4.0",
         "magnific-popup": "^1.1.0",
+        "mapbox-gl-geocoder": "^2.0.1",
         "mobile-drag-drop": "^3.0.0-beta.0",
         "moment": "^2.29.3",
         "morris.js": "^0.5.0",
@@ -80,6 +81,7 @@
         "twitter-bootstrap-wizard": "^1.2.0",
         "upload-file": "^1.2.0",
         "use-file-upload": "^1.0.11",
-        "waypoints": "^4.0.1"
+        "waypoints": "^4.0.1",
+        "wnumb": "^1.2.0"
     }
 }

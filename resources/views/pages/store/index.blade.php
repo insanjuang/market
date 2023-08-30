@@ -104,17 +104,16 @@
                                         <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
                                     </div><!-- End .product-action -->
                                     <div class="product-action">
-                                        <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to
-                                                cart</span></a>
-                                        <a href="popup/quickView.html" class="btn-product btn-quickview"
-                                            title="Quick view"><span>quick view</span></a>
+                                        <a href="#" class="btn-product btn-cart" title="Add to cart" onclick="addToCart({{$product->id_produk}})"><span>masuk keranjang</span></a>
+                                        <a href="{{route('store.productDetail',$product->id_produk)}}" class="btn-product btn-quickview"
+                                            title="Quick view"><span>lihat produk</span></a>
                                     </div><!-- End .product-action -->
                                 </figure><!-- End .product-media -->
                                 <div class="product-body">
                                     <div class="product-cat">
                                         <a href="#">{{$category->nama_kategori}}</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="product.html">{{$product->nama_produk}}
+                                    <h3 class="product-title"><a href="{{route('store.productDetail',$product->id_produk)}}">{{$product->nama_produk}}
                                         </a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         Rp.{{$product->harga_jual}}
@@ -206,10 +205,9 @@
                                         </div><!-- End .product-action --> --}}
 
                                         <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to
-                                                    cart</span></a>
-                                            <a href="popup/quickView.html" class="btn-product btn-quickview"
-                                                title="Quick view"><span>quick view</span></a>
+                                            <a href="#" class="btn-product btn-cart" title="Add to cart" onclick="addToCart({{$product->id_produk}})"><span>masuk keranjang</span></a>
+                                            <a href="{{route('store.productDetail',$product->id_produk)}}" class="btn-product btn-quickview"
+                                                title="Quick view"><span>lihat produk</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
 
@@ -217,7 +215,7 @@
                                         <div class="product-cat">
                                             <a href="#">{{$category->nama_kategori}}</a>
                                         </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">{{$product->nama_produk}}</a></h3><!-- End .product-title -->
+                                        <h3 class="product-title"><a href="{{route('store.productDetail',$product->id_produk)}}">{{$product->nama_produk}}</a></h3><!-- End .product-title -->
                                         <div class="product-price">
                                             Rp. {{$product->harga_jual}}
                                         </div><!-- End .product-price -->

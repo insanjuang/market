@@ -2,11 +2,22 @@
 @section('content')
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container d-flex align-items-center">
-            {{-- <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Products</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Centered</li>
-            </ol> --}}
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('store')}}">Branda</a></li>
+                <li class="breadcrumb-item"><a href="{{route('store.product')}}">Produk</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$product->nama_produk}}</li>
+            </ol>
+                    {{-- <nav class="product-pager ml-auto" aria-label="Product">
+                        <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
+                            <i class="icon-angle-left"></i>
+                            <span>Prev</span>
+                        </a>
+
+                        <a class="product-pager-link product-pager-next" href="{{route('store.product')}}" aria-label="Next" tabindex="-1">
+                            <span>Lihat Produk Lain</span>
+                            <i class="icon-angle-right"></i>
+                        </a>
+                    </nav><!-- End .pager-nav --> --}}
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
 
@@ -29,13 +40,13 @@
 
                                 <div id="product-zoom-gallery" class="product-image-gallery">
                                     @if (count($product->images) > 0)
-                                    @foreach ($product->images as $key => $image)
-                                        <a class="product-gallery-item {{($key == 0) ? 'active':''}}" href="#"
-                                            data-image="{{URL::asset('storage/'.$image->url)}}"
-                                            data-zoom-image="{{URL::asset('storage/'.$image->url)}}">
-                                            <img src="{{URL::asset('storage/'.$image->url)}}" alt="product image">
-                                        </a>
-                                    @endforeach
+                                        @foreach ($product->images as $key => $image)
+                                            <a class="product-gallery-item {{($key == 0) ? 'active':''}}" href="#"
+                                                data-image="{{URL::asset('storage/'.$image->url)}}"
+                                                data-zoom-image="{{URL::asset('storage/'.$image->url)}}">
+                                                <img src="{{URL::asset('storage/'.$image->url)}}" alt="product image">
+                                            </a>
+                                        @endforeach
                                     @else
                                         <a class="product-gallery-item active" href="#"
                                             data-image="{{URL::asset('assets/img/product/product1.jpg')}}"
@@ -70,10 +81,10 @@
                             <div class="product-details-action">
                                 <div class="details-action-col">
                                     <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="99" step="1" data-decimals="0" required>
+                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="100" step="1" data-decimals="0" required>
                                     </div><!-- End .product-details-quantity -->
 
-                                    <a href="#" class="btn-product btn-cart"><span>Masuk keranjang</span></a>
+                                    <a href="#" class="btn-product btn-cart" onclick="addToCart({{$product->id_produk}})"><span>Masuk keranjang</span></a>
                                 </div><!-- End .details-action-col -->
 
                                 {{-- <div class="details-action-wrapper">
@@ -252,3 +263,4 @@
         </div><!-- End .container -->
     </div><!-- End .page-content -->
 @endsection
+

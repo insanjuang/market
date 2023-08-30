@@ -6,14 +6,12 @@
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
-        {{-- <div class="container">
+        <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item"><a href="#">No Sidebar</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Boxed</li>
+                <li class="breadcrumb-item"><a href="{{route('store')}}">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Produk</li>
             </ol>
-        </div><!-- End .container --> --}}
+        </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
 
     <div class="page-content">
@@ -61,7 +59,7 @@
                                     </div><!-- End .product-action --> --}}
 
                                     <div class="product-action action-icon-top">
-                                        <a href="#" class="btn-product btn-cart"><span>masuk keranjang</span></a>
+                                        <a href="#" class="btn-product btn-cart" onclick="addToCart({{$product->id_produk}})"><span>masuk keranjang</span></a>
                                         <a href="{{route('store.productDetail',$product->id_produk)}}" class="btn-product btn-quickview"
                                             title="Quick view"><span>lihat produk</span></a>
                                     </div><!-- End .product-action -->

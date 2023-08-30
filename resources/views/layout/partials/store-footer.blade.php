@@ -4,7 +4,7 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
                             <div class="widget widget-about">
-                                <img src="{{ URL::asset('/assets/img/logo-white.png')}}" class="footer-logo" alt="Footer Logo"
+                                <img src="{{ URL::asset('/assets/img/logo.png')}}" class="footer-logo" alt="Footer Logo"
                                     width="105" height="25">
                                 <p>Adin Mart, kini hadir dengan toko online yang memudahkan kamu untuk mencari produk halal, thoyib dan barokah.</p>
 
@@ -27,3 +27,4 @@
                 </div><!-- End .container -->
             </div><!-- End .footer-bottom -->
         </footer><!-- End .footer -->
+

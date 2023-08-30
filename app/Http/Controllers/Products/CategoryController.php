@@ -142,6 +142,7 @@ class CategoryController extends Controller
 
         $input = $request->except(['oldImage']);
 
+
         if ($image = $request->file('image')) {
             if ($request->input('oldImage')) {
                 Storage::delete($request->input('oldImage'));

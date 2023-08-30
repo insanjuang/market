@@ -393,6 +393,7 @@
     "/assets/img/logo-small.png": "/assets/img/logo-small.png",
     "/assets/img/logo-white.png": "/assets/img/logo-white.png",
     "/assets/img/logo.png": "/assets/img/logo.png",
+    "/assets/img/logox.png": "/assets/img/logox.png",
     "/assets/img/product/Macbook.png": "/assets/img/product/Macbook.png",
     "/assets/img/product/noimage.png": "/assets/img/product/noimage.png",
     "/assets/img/product/product1.jpg": "/assets/img/product/product1.jpg",
@@ -1092,5 +1093,19 @@
     "/assets/plugins/toastr/toastr.js.map": "/assets/plugins/toastr/toastr.js.map",
     "/assets/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js": "/assets/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js",
     "/assets/plugins/jquery-hoverintent/jquery.hoverIntent.min.js": "/assets/plugins/jquery-hoverintent/jquery.hoverIntent.min.js",
-    "/assets/plugins/superfish/superfish.min.js": "/assets/plugins/superfish/superfish.min.js"
+    "/assets/plugins/superfish/superfish.min.js": "/assets/plugins/superfish/superfish.min.js",
+    "/assets/plugins/magnific-popup/jquery.magnific-popup.js": "/assets/plugins/magnific-popup/jquery.magnific-popup.js",
+    "/assets/plugins/magnific-popup/jquery.magnific-popup.min.js": "/assets/plugins/magnific-popup/jquery.magnific-popup.min.js",
+    "/assets/plugins/magnific-popup/magnific-popup.css": "/assets/plugins/magnific-popup/magnific-popup.css",
+    "/assets/plugins/nouislider/nouislider.css": "/assets/plugins/nouislider/nouislider.css",
+    "/assets/plugins/nouislider/nouislider.d.ts": "/assets/plugins/nouislider/nouislider.d.ts",
+    "/assets/plugins/nouislider/nouislider.js": "/assets/plugins/nouislider/nouislider.js",
+    "/assets/plugins/nouislider/nouislider.min.css": "/assets/plugins/nouislider/nouislider.min.css",
+    "/assets/plugins/nouislider/nouislider.min.js": "/assets/plugins/nouislider/nouislider.min.js",
+    "/assets/plugins/nouislider/nouislider.min.mjs": "/assets/plugins/nouislider/nouislider.min.mjs",
+    "/assets/plugins/nouislider/nouislider.mjs": "/assets/plugins/nouislider/nouislider.mjs",
+    "/assets/plugins/jquery-elevateZoom/jquery.elevatezoom.js": "/assets/plugins/jquery-elevateZoom/jquery.elevatezoom.js",
+    "/assets/plugins/wnumb/wNumb.js": "/assets/plugins/wnumb/wNumb.js",
+    "/assets/plugins/mapbox-gl-geocoder/mapbox-gl-geocoder.css": "/assets/plugins/mapbox-gl-geocoder/mapbox-gl-geocoder.css",
+    "/assets/plugins/mapbox-gl-geocoder/mapbox-gl-geocoder.min.js": "/assets/plugins/mapbox-gl-geocoder/mapbox-gl-geocoder.min.js"
 }
