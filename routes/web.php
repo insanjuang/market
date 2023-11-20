@@ -10,6 +10,10 @@ use App\Http\Controllers\Products\SubCategoryController;
 use App\Http\Controllers\Entities\SupplierController;
 use App\Http\Controllers\Entities\WilayahController;
 use App\Http\Controllers\Transaction\PurchaseController;
+use App\Http\Controllers\Transaction\SalesController;
+use App\Http\Controllers\Transaction\CashierController;
+use App\Http\Controllers\Transaction\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,12 +32,13 @@ Route::get('/', function () {
 Route::get('/store',[StoreController::class,'index'])->name('store');
 Route::get('/store/product',[StoreController::class,'product'])->name('store.product');
 Route::get('/store/product/{id}',[StoreController::class,'productDetail'])->name('store.productDetail');
-Route::get('/store/cart',[StoreController::class,'cartList'])->name('store.cartList');
+Route::get('/store/cart/item',[StoreController::class,'cartList'])->name('store.cartList');
+Route::get('/store/cart',[StoreController::class,'getCart'])->name('store.getCart');
 Route::post('/store/cart',[StoreController::class,'addToCart'])->name('store.addToCart');
 Route::delete('/store/cart/{id}',[StoreController::class,'removeCart'])->name('store.removeCart');
+Route::post('/store/checkout',[StoreController::class,'saveCheckout'])->name('store.postCheckout');
 Route::get('/store/checkout',[StoreController::class,'checkout'])->name('store.checkout');
 Route::post('/store/shipping_price',[StoreController::class,'getShippingPrice'])->name('store.getShippingPrice');
-Route::post('/store/checkout',[StoreController::class,'saveCheckout'])->name('store.postCheckout');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -54,9 +59,20 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::prefix('transaction')->group(function () {
             Route::resource('/purchase', PurchaseController::class);
+            Route::get('/sales/data', [SalesController::class, 'data'])->name('sales.data');
+            Route::resource('/sales', SalesController::class);
+            Route::post('/sales/update-status/{id}', [SalesController::class, 'updateStatus'])->name('sales.updateStatus');
+            Route::get('/sales/invoice/print/{nota}', [SalesController::class, 'printInvoice'])->name('sales.printInvoice');
+            Route::get('/sales/invoice/{nota}', [SalesController::class, 'generateInvoice'])->name('sales.genInvoice');
+            Route::resource('/cashier', CashierController::class);
+            Route::resource('/cart', CartController::class);
+            Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+
         });
     });
 });
+Route::post('/cashier/cart',[CashierController::class,'addToCart'])->name('cashier.addToCart');
+
 Route::get('/purchase/data', [PurchaseController::class, 'data'])->name('purchase.data');
 Route::get('/purchase/addrow', [PurchaseController::class, 'addRow'])->name('purchase.addRow');
 Route::get('/category/data', [CategoryController::class, 'data'])->name('category.data');

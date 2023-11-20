@@ -48,14 +48,14 @@
                                             </h3><!-- End .product-title -->
                                         </div><!-- End .product -->
                                     </td>
-                                    <td class="price-col">Rp. {{$item->price}}</td>
+                                    <td class="price-col">@currency($item->price)</td>
                                     <td class="quantity-col">
                                         <div class="cart-product-quantity">
                                             <input type="number" class="form-control" value="{{$item->quantity}}" min="1"
                                                 max="10" step="1" data-decimals="0" required>
                                         </div><!-- End .cart-product-quantity -->
                                     </td>
-                                    <td class="total-col">Rp.{{$item->price * $item->quantity}}</td>
+                                    <td class="total-col">@currency($item->price * $item->quantity)</td>
                                     <td class="remove-col"><button class="btn-remove" onclick="removeItem({{$item->id}}, '{{route('store.removeCart',$item->id)}}')"><i class="icon-close"></i></button>
                                     </td>
                                 </tr>
@@ -88,16 +88,16 @@
                                 <tbody>
                                     <tr class="summary-subtotal">
                                         <td>Subtotal:</td>
-                                        <td>Rp. {{Cart::getSubTotal()}}</td>
+                                        <td>@currency(Cart::getSubTotal())</td>
                                     </tr><!-- End .summary-subtotal -->
                                     <tr class="summary-shipping">
                                         <td>Biaya Layanan:</td>
-                                        <td>Rp. 1000</td>
+                                        <td>@currency(env('ADMIN_FEE'))</td>
                                     </tr>
 
                                     <tr class="summary-total">
                                         <td>Total:</td>
-                                        <td>Rp. {{Cart::getTotal() + 1000}}</td>
+                                        <td>@currency(Cart::getTotal() + env('ADMIN_FEE'))</td>
                                     </tr><!-- End .summary-total -->
                                 </tbody>
                             </table><!-- End .table table-summary -->

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Products\Category;
 use App\Models\Products\Product;
+use App\Models\Transaction\Stores;
+use App\Models\Transaction\StoresDetail;
+use Illuminate\Support\Facades\DB;
 use Cart;
 
 
@@ -68,6 +71,26 @@ class StoreController extends Controller
         return view('pages.store.cart', compact('cartItems'));
     }
 
+    public function getCart()
+    {
+        $cartItems = \Cart::getContent();
+        $cartArray = $cartItems->toArray();
+        $totalItem = count($cartItems);
+        $totalQuantity = \Cart::getTotalQuantity();
+        $subTotalPrice = \Cart::getSubTotal();
+        $totalPrice = \Cart::getTotal();
+        $taxPrice = env('ADMIN_FEE');
+
+        return response()->json([
+            'data'=>$cartArray,
+            'totalItem'=>$totalItem,
+            'totalQty'=>$totalQuantity,
+            'subTotal'=>"Rp ".number_format($subTotalPrice),
+            'total'=>"Rp ".number_format($totalPrice),
+            'tax'=>"Rp ".number_format($taxPrice)
+        ]);
+    }
+
     public function addToCart(Request $request)
     {
         $request->validate([
@@ -116,17 +139,17 @@ class StoreController extends Controller
 
     public function getShippingPrice(Request $request)
     {
-        $origin = env('STORE_GEOCODE');
+        $origin = env('STORE_GEOCODE','-6.935275,107.619703');
         $destination = $request->input('destination');
-        $mode = 'driving'; // Default to driving mode
+        $mode = env('DIRECTION_MODE','driving'); // Default to driving mode
         $minimum_radius = env('SHIPPING_MINIMUM_RADIUS');
 
         $response = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json', [
-            'origins' => [$origin],
-            'destinations' => [$destination],
+            'origins' => $origin,
+            'destinations' => $destination,
             'mode' => $mode,
             'units' => 'metric',
-            'key' => env('GOOGLE_API_KEY'), // Replace with your actual API key
+            'key' => env('GOOGLE_API_KEY','AIzaSyBqBoLvcExO_q_AvmG6dzjAj4yyyL2Yc_8'), // Replace with your actual API key
         ]);
 
         $data = $response->json();
@@ -136,15 +159,23 @@ class StoreController extends Controller
             $distance = $data['rows'][0]['elements'][0]['distance']['value'];
             $durationText = $data['rows'][0]['elements'][0]['duration']['text'];
 
-            $price = 0;
-            if (($distance/1000000) > $minimum_radius) {
-                $price = (($distance/1000000) - $minimum_radius) * env('SHIPPING_PRICE');
+            $price = "Gratis Ongkir";
+            $distancekm = $distance/1000;
+            $restDistance = round($distancekm - $minimum_radius);
+            $total_price = Cart::getSubTotal()+1000;
+            $shipping_price = 0;
+            if ($restDistance > 0) {
+                $shipping_price = $restDistance * env('SHIPPING_PRICE',1000);
+                $total_price += $shipping_price;
             }
 
             return response()->json([
                 'distance' => $distanceText,
                 'duration' => $durationText,
-                'price' => $price,
+                'product_price' => number_format(Cart::getSubTotal(),0,',','.'),
+                'tax_price' => number_format(env('ADMIN_FEE'),0,',','.'),
+                'shipping_price' => number_format($shipping_price,0,',','.'),
+                'total_price' => number_format($total_price,0,',','.')
             ]);
         } else {
             return response()->json(['error' => 'Failed to calculate distance','data'=> $data], 500);
@@ -153,6 +184,68 @@ class StoreController extends Controller
 
     public function saveCheckout(Request $request)
     {
-        # code...
+        $request->validate([
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'postal_code' => 'required',
+            'telepon' => 'required',
+            'shipping_price' => 'required',
+            'total_amount' => 'required',
+            'shipping_option' => 'required',
+
+        ]);
+        $nota = getInvoiceNumber("web");
+
+        $shipping_date = ($request->input("shipping_option") == 1) ? date("Y-m-d", strtotime("+1 day")) : date("Y-m-d", strtotime("+2 day")) ;
+
+        $input = [
+            "device" => "WEB",
+            "tgl_transaksi" => date('Y-m-d'),
+            "nota" => $nota,
+            "nama_buyer" => $request->input("nama_depan")." ".$request->input("nama_belakang") ,
+            "no_telp" => $request->input("telepon"),
+            "alamat_kirim" => $request->input("address"),
+            "kota" => $request->input("city"),
+            "kode_pos" => $request->input("postal_code"),
+            "longlat" => $request->input("longlat"),
+            "tgl_kirim" => $shipping_date,
+            "notes" => $request->input("catatan"),
+            "total_item" => count(Cart::getContent()),
+            "total_harga" => Cart::getTotal(),
+            "diskon" => 0,
+            "bayar" => str_replace(".","",$request->input("total_amount")),
+            "ongkos_kirim" => str_replace(".","",$request->input("shipping_price")),
+            "status_order" => 0,
+        ];
+
+        DB::beginTransaction();
+        try {
+            $penjualan = Stores::create($input);
+            foreach (Cart::getContent() as $item) {
+                $prd = Product::where('id_produk','=',$item->id)->first();
+                $details[] = StoresDetail::create([
+                    "id_penjualan" => $penjualan->id_penjualan,
+                    "id_produk" => $item->id,
+                    "harga_jual" => $item->price,
+                    "jumlah" => $item->quantity,
+                    "subtotal" => $item->quantity * $item->price,
+                ]);
+
+                $prd->stok -= $item->quantity;
+                $prd->save();
+                \Cart::remove($item->id);
+            }
+            DB::commit();
+            return view('pages.store.success-order');
+        }catch(\Exception $e){
+            DB::rollback();
+
+            return redirect()->back()->withErrors('Gagal melakukan pesanan')->withInput();
+            // return response()->json(['error' => $e->getMessage()], 500);
+
+        }
     }
 }

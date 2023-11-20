@@ -36,11 +36,8 @@
                         <li class="submenu">
                             <a href="javascript:void(0);"><img src="{{ URL::asset('/assets/img/icons/sales1.svg')}}" alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="saleslist">Sales List</a></li>
-                                <li><a href="pos">POS</a></li>
-                                <li><a href="pos">New Sales</a></li>
-                                <li><a href="salesreturnlists">Sales Return List</a></li>
-                                <li><a href="createsalesreturns">New Sales Return</a></li>
+                                <li><a href="{{ route('sales.index') }}">Sales List</a></li>
+                                <li><a href="{{ route('cashier.index') }}">POS</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -308,11 +305,8 @@
                         <li class="submenu">
                             <a href="javascript:void(0);"><span> Sales</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="saleslist">Sales List</a></li>
-                                <li><a href="pos">POS</a></li>
-                                <li><a href="pos">New Sales</a></li>
-                                <li><a href="salesreturnlists">Sales Return List</a></li>
-                                <li><a href="createsalesreturns">New Sales Return</a></li>
+                                <li><a href="{{ route('sales.index') }}">Sales List</a></li>
+                                <li><a href="{{ route('cashier.index') }}">POS</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -499,13 +493,10 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a class="{{ Request::is('saleslist','pos','add-sales','sales-details','editsalesreturns','edit-sales','salesreturnlists','createsalesreturns') ? 'active' : '' }}" href="javascript:void(0);"><img src="{{ URL::asset('/assets/img/icons/sales1.svg')}}" alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
+                    <a class="{{ Request::is('transaction','pos','add-sales','sales-details','editsalesreturns','edit-sales','salesreturnlists','createsalesreturns') ? 'active' : '' }}" href="javascript:void(0);"><img src="{{ URL::asset('/assets/img/icons/sales1.svg')}}" alt="img"><span> Sales</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a class="{{ Request::is('saleslist','sales-details') ? 'active' : '' }}" href="{{url('saleslist')}}">Sales List</a></li>
-                        <li><a class="{{ Request::is('pos') ? 'active' : '' }}" href="{{url('pos')}}">POS</a></li>
-                        <li><a class="{{ Request::is('add-sales','edit-sales') ? 'active' : '' }}" href="{{url('add-sales')}}">New Sales</a></li>
-                        <li><a class="{{ Request::is('salesreturnlists','editsalesreturns') ? 'active' : '' }}" href="{{url('salesreturnlists')}}">Sales Return List</a></li>
-                        <li><a class="{{ Request::is('createsalesreturns') ? 'active' : '' }}" href="{{url('createsalesreturns')}}">New Sales Return</a></li>
+                        <li><a class="{{ Request::is('transaction/sales') ? 'active' : '' }}" href="{{route('sales.index')}}">Sales List</a></li>
+                        <li><a class="{{ Request::is('transaction/cashier') ? 'active' : '' }}" href="{{route('cashier.index')}}">POS</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

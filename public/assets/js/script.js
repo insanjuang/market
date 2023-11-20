@@ -3,10 +3,10 @@ Author       : Dreamguys
 Template Name: POS - Bootstrap Admin Template
 */
 
-
 $(document).ready(function(){
 
     let publicImgPath = "{{ URL::asset('/storage/uploads/image') }}";
+
 
 	// Variables declarations
 	var $wrapper = $('.main-wrapper');

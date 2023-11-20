@@ -3,11 +3,11 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container d-flex align-items-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('store')}}">Branda</a></li>
-                <li class="breadcrumb-item"><a href="{{route('store.product')}}">Produk</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$product->nama_produk}}</li>
+                <li class="breadcrumb-item"><a href="{{ route('store') }}">Branda</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('store.product') }}">Produk</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $product->nama_produk }}</li>
             </ol>
-                    {{-- <nav class="product-pager ml-auto" aria-label="Product">
+            {{-- <nav class="product-pager ml-auto" aria-label="Product">
                         <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
                             <i class="icon-angle-left"></i>
                             <span>Prev</span>
@@ -26,8 +26,32 @@
             <div class="product-details-top mb-2">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="product-gallery product-gallery-vertical">
-                            <div class="row">
+                        <div class="product-gallery product-gallery-separated">
+                            <span class="product-label label-sale">Sale</span>
+                            @if (count($product->images) > 0)
+                                @foreach ($product->images as $key => $image)
+                                    <figure class="product-separated-item">
+                                        <img src="{{ URL::asset('storage/' . $image->url) }}"
+                                            data-zoom-image="{{ URL::asset('storage/' . $image->url) }}" alt="product image">
+
+                                        <a href="#" id="btn-separated-gallery" class="btn-product-gallery">
+                                            <i class="icon-arrows"></i>
+                                        </a>
+                                    </figure>
+                                @endforeach
+                            @else
+                                <figure class="product-separated-item">
+                                    <img src="{{ URL::asset('assets/img/product/product1.jpg') }}"
+                                        data-zoom-image="{{ URL::asset('assets/img/product/product1.jpg') }}"
+                                        alt="product image">
+
+                                    <a href="#" id="btn-separated-gallery" class="btn-product-gallery">
+                                        <i class="icon-arrows"></i>
+                                    </a>
+                                </figure>
+                            @endif
+
+                            {{-- <div class="row">
                                 <figure class="product-main-image">
                                     <img id="product-zoom" src="{{(count($product->images) > 0) ? URL::asset('storage/'.$product->images[0]->url) : URL::asset('assets/img/product/product1.jpg')}}"
                                         data-zoom-image="{{(count($product->images) > 0) ? URL::asset('storage/'.$product->images[0]->url) : URL::asset('assets/img/product/product1.jpg')}}"
@@ -55,13 +79,13 @@
                                         </a>
                                     @endif
                                 </div><!-- End .product-image-gallery -->
-                            </div><!-- End .row -->
+                            </div><!-- End .row --> --}}
                         </div><!-- End .product-gallery -->
                     </div><!-- End .col-md-6 -->
 
                     <div class="col-md-6">
                         <div class="product-details product-details-centered">
-                            <h1 class="product-title">{{$product->nama_produk}}</h1><!-- End .product-title -->
+                            <h1 class="product-title">{{ $product->nama_produk }}</h1><!-- End .product-title -->
 
                             {{-- <div class="ratings-container">
                                 <div class="ratings">
@@ -71,20 +95,22 @@
                             </div><!-- End .rating-container --> --}}
 
                             <div class="product-price">
-                                Rp. {{$product->harga_jual}}
+                                @currency($product->harga_jual)
                             </div><!-- End .product-price -->
 
                             <div class="product-content">
-                                <p>{{$product->description}}</p>
+                                <p>{{ $product->description }}</p>
                             </div><!-- End .product-content -->
 
                             <div class="product-details-action">
                                 <div class="details-action-col">
                                     <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="100" step="1" data-decimals="0" required>
+                                        <input type="number" id="qty" class="form-control" value="1"
+                                            min="1" max="100" step="1" data-decimals="0" required>
                                     </div><!-- End .product-details-quantity -->
 
-                                    <a href="#" class="btn-product btn-cart" onclick="addToCart({{$product->id_produk}})"><span>Masuk keranjang</span></a>
+                                    <a href="#" class="btn-product btn-cart"
+                                        onclick="addToCart({{ $product->id_produk }})"><span>Masuk keranjang</span></a>
                                 </div><!-- End .details-action-col -->
 
                                 {{-- <div class="details-action-wrapper">
@@ -98,7 +124,7 @@
                             <div class="product-details-footer">
                                 <div class="product-cat">
                                     <span>Category:</span>
-                                    <a href="#">{{$product->nama_kategori}}</a>
+                                    <a href="#">{{ $product->nama_kategori }}</a>
                                 </div><!-- End .product-cat -->
 
                                 {{-- <div class="social-icons social-icons-sm">
@@ -263,4 +289,3 @@
         </div><!-- End .container -->
     </div><!-- End .page-content -->
 @endsection
-

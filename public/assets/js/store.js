@@ -1,4 +1,4 @@
-// Demo 4 Js file
+
 $(document).ready(function () {
     'use strict';
 
@@ -50,4 +50,51 @@ $(document).ready(function () {
         e.preventDefault()
         $(this).tab('show')
     })
+
 });
+
+    function addToCart(id) {
+        let qty = $('#qty').val();
+
+        if (typeof $('#qty').val() === 'undefined') {
+            qty = 1
+        }
+
+        $('#form-data #token').val($('[name=csrf-token]').attr('content'));
+        $('#form-data #product-id').val(id);
+        $('#form-data #quantity').val(qty);
+        var formData = $("#form-data").serialize();
+        $.ajax({
+            url: base_url+"/store/cart",
+            type: "POST",
+            data: formData,
+            success: function(result) {
+                $('#cart-count').text('{{ Cart::getTotalQuantity() }}');
+                $('#cart-total-price').html('Rp. {{ Cart::getTotal() }}');
+                // Swal.fire("Updated!", "Your data has been updated." );
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+            }
+        });
+    }
+
+    function removeItem(id, url) {
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            data: {
+                "_token": $('[name=csrf-token]').attr('content'),
+                "_method": "DELETE",
+            },
+            success: function(result) {
+                $('#cart-count').text('{{ Cart::getTotalQuantity() }}');
+                $('#product-' + id).remove();
+                $('#cart-total-price').html('Rp. {{ Cart::getTotal() }}');
+                // Swal.fire("Updated!", "Your data has been updated." );
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+            }
+        });
+    }

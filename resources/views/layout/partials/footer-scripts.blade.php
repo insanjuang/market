@@ -40,7 +40,7 @@
 <script src="{{ URL::asset('/assets/plugins/c3-chart/d3.min.js')}}"></script>
 <script src="{{ URL::asset('/assets/plugins/c3-chart/c3.min.js')}}"></script>
 <script src="{{ URL::asset('/assets/plugins/c3-chart/chart-data.js')}}"></script>
-@endif      
+@endif
 <!-- Chart JS -->
 <script src="{{ URL::asset('/assets/plugins/apexchart/apexcharts.min.js')}}"></script>
 <script src="{{ URL::asset('/assets/plugins/apexchart/chart-data.js')}}"></script>
@@ -133,4 +133,16 @@
 <script src="{{ URL::asset('/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
 
 <!-- Custom JS -->
+<script type="text/javascript">
+    let base_url = "{{ url('/') }}";
+    let baseImgPath = "{{ URL::asset('/assets') }}";
+    // console.log(baseImgPath);
+</script>
 <script src="{{ URL::asset('/assets/js/script.js')}}"></script>
+@if(Route::is(['cashier.index']))
+<script src="{{ URL::asset('/assets/js/custom/pages/transaction/cashier.js')}}"></script>
+@endif
+
+@if(Route::is(['sales.index','sales.show']))
+<script src="{{ URL::asset('/assets/js/custom/pages/transaction/sales.js')}}"></script>
+@endif

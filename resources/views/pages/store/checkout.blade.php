@@ -18,7 +18,7 @@
     <div class="page-content">
         <div class="checkout">
             <div class="container">
-                <form action="{{ route('store.postCheckout') }}">
+                <form action="{{ route('store.postCheckout') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="row">
@@ -27,12 +27,12 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Nama Depan *</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="nama_depan" required>
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-6">
                                     <label>Nama Belakang *</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="nama_belakang" required>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 {{--
@@ -63,7 +63,7 @@
 
                                 <div class="col-sm-6">
                                     <label>Telepon / HP *</label>
-                                    <input type="tel" class="form-control" required>
+                                    <input type="tel" class="form-control" name="telepon" required>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
@@ -82,7 +82,7 @@
                             </div><!-- End .custom-checkbox --> --}}
 
                             <label>Beri Catatan (opsional)</label>
-                            <textarea class="form-control" cols="30" rows="4"
+                            <textarea class="form-control" cols="30" rows="4" name="catatan"
                                 placeholder="Catatan atau keterangan khusus pesanan."></textarea>
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3">
@@ -101,24 +101,31 @@
                                         @foreach (Cart::getContent() as $item)
                                         <tr>
                                             <td><a href="#">{{ $item->name }}</a></td>
-                                            <td>Rp. {{ $item->quantity * $item->price }}</td>
+                                            <td>@currency( $item->quantity * $item->price ) </td>
                                         </tr>
                                         @endforeach
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
-                                            <td>Rp. {{ Cart::getSubTotal() }}</td>
+                                            <td>@currency( Cart::getSubTotal() )</td>
                                         </tr><!-- End .summary-subtotal -->
                                         <tr>
                                             <td>Biaya Layanan:</td>
-                                            <td>Rp. 1000</td>
+                                            <td>@currency(env('ADMIN_FEE'))</td>
                                         </tr>
                                         <tr>
                                             <td>Ongkos Krim:</td>
-                                            <td>0</td>
+                                            <td class="shipping_price">
+                                                Rp. 0
+                                            </td>
+                                            <input type="hidden" class="hidden" id="shipping_price" name="shipping_price" readonly/>
                                         </tr>
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>Rp. 160.00</td>
+                                            <td class="total_amount">
+                                                Rp.0
+                                            </td>
+                                            <input type="hidden" class="hidden" id="total_amount" name="total_amount" readonly/>
+
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->
@@ -144,6 +151,37 @@
                                     </div><!-- End .card -->
                                 </div><!-- End .accordion -->
 
+                                <div id="shipping-time">
+                                    <div class="grid-wrapper grid-col-auto">
+                                        <label for="radio-card-1" class="radio-card">
+                                            <input type="radio" name="shipping_option" id="radio-card-1" value="1" checked />
+                                            <div class="card-content-wrapper">
+                                                <span class="check-icon"></span>
+                                                <div class="card-content">
+                                                    <img src="https://image.freepik.com/free-vector/group-friends-giving-high-five_23-2148363170.jpg" alt="" />
+                                                    <h4>Kirim Besok</h4>
+                                                    <h5>Saya ingin pesanannya datang besok.</h5>
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <!-- /.radio-card -->
+
+                                        <label for="radio-card-2" class="radio-card">
+                                            <input type="radio" name="shipping_option" id="radio-card-2" value="2" />
+                                            <div class="card-content-wrapper">
+                                                <span class="check-icon"></span>
+                                                <div class="card-content">
+                                                    <img src="https://image.freepik.com/free-vector/people-putting-puzzle-pieces-together_52683-28610.jpg" alt="" />
+                                                    <h4>Kirim Lusa</h4>
+                                                    <h5>Saya ngga buru-buru, kirim lusa aja.</h5>
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <!-- /.radio-card -->
+                                    </div>
+                                    <!-- /.grid-wrapper -->
+                                </div>
+
                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                     <span class="btn-text">Lanjutkan Pesanan</span>
                                     <span class="btn-hover-text">Proses Sekarang</span>
@@ -157,3 +195,94 @@
     </div><!-- End .page-content -->
 @endsection
 
+@section('scripts')
+<script type="text/javascript">
+    let autocomplete;
+let addressField;
+const center = {lng: 107.6527148, lat: -6.9556164};
+const defaultBounds = {
+    north: center.lat + 0.1,
+    south: center.lat - 0.1,
+    east: center.lng + 0.1,
+    west: center.lng - 0.1,
+};
+
+window.initAutocomplete = initAutocomplete;
+
+function initAutocomplete() {
+    addressField = document.querySelector("#maps-address");
+    // Create the autocomplete object, restricting the search predictions to
+    // addresses in the US and Canada.
+    autocomplete = new google.maps.places.Autocomplete(addressField, {
+        componentRestrictions: { country: ["id"] },
+            bounds: defaultBounds,
+            fields: ["address_components", "geometry"],
+            types: ["geocode"],
+        });
+        // addressField.focus();
+        // When the user selects an address from the drop-down, populate the
+        // address fields in the form.
+        autocomplete.addListener("place_changed", fillInAddress);
+    }
+
+    function fillInAddress() {
+        const place = autocomplete.getPlace();
+
+        // Extract address components (e.g., street, city, state)
+        const addressComponents = place.address_components;
+
+        const latitude = place.geometry.location.lat();
+        const longitude = place.geometry.location.lng();
+        // Use these components to populate your form fields
+        // For example:
+        document.getElementById('city').value = getAddressComponent(addressComponents, "administrative_area_level_2");
+        document.getElementById('state').value = getAddressComponent(addressComponents, "administrative_area_level_1");
+        document.getElementById('postal_code').value = getAddressComponent(addressComponents, 'postal_code');
+        document.getElementById('longlat').value = latitude+","+longitude;
+        // ...
+
+        // Display the formatted address
+        getShippingPrice(latitude+","+longitude);
+    };
+
+    function getShippingPrice(destination) {
+        $.ajax({
+            url: "{{ route('store.getShippingPrice') }}",
+            type: "POST",
+            data: {
+                '_method': "POST",
+                '_token': $('[name=csrf-token]').attr('content'),
+                'destination': destination,
+            },
+            success: function(result) {
+                console.log(result);
+                $('.shipping_price').text("Rp. "+result.shipping_price);
+                $('#shipping_price').val(result.shipping_price);
+                $('.total_amount').text("Rp. "+result.total_price);
+                $('#total_amount').val(result.total_price);
+
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+            }
+        });
+
+    }
+
+    function getAddressComponent(components, type) {
+        let lng_name;
+        for (let i = 0; i < components.length; i++) {
+            const component = components[i];
+            const componentType = component.types[0];
+
+            if (componentType == type) {
+                lng_name = component.long_name;
+                break;
+            }
+            // Add more conditions for other address components as needed
+        }
+        return lng_name;
+
+    }
+</script>
+@endsection

@@ -21,6 +21,11 @@ class Category extends Model
         return $this->hasMany(Product::class, 'id_subkategori', 'id_kategori');
     }
 
+    public function allProduct()
+    {
+        return $this->hasMany(Product::class, 'id_kategori', 'id_kategori');
+    }
+
     public function newProduct()
     {
         return $this->product()->latest()->limit(8);

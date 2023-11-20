@@ -12,6 +12,7 @@
                 </a>
             </div><!-- End .header-left -->
 
+            @if (Route::is(['store']))
             <div class="header-center">
                 <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
@@ -25,6 +26,7 @@
                     </form>
                 </div><!-- End .header-search -->
             </div>
+            @endif
 
             <div class="header-right">
                 {{-- <div class="wishlist">
@@ -36,6 +38,17 @@
                                 <p>Wishlist</p>
                             </a>
                         </div><!-- End .compare-dropdown --> --}}
+                @if (!Route::is(['store']))
+                <div class="header-search">
+                    <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                    <form action="#" method="get">
+                        <div class="header-search-wrapper">
+                            <label for="q" class="sr-only">Search</label>
+                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+                @endif
 
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -48,30 +61,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-cart-products">
-                            @foreach (Cart::getContent() as $item)
-                            <div class="product" id="product-{{$item->id}}">
-                                <div class="product-cart-details">
-                                    <h4 class="product-title">
-                                        <a href="product.html">{{$item->name}}</a>
-                                    </h4>
-
-                                    <span class="cart-product-info">
-                                        <span class="cart-product-qty">{{$item->quantity}}</span>
-                                        x Rp. {{$item->price}}
-                                    </span>
-                                </div><!-- End .product-cart-details -->
-
-                                <figure class="product-image-container">
-                                    <a href="#" class="product-image">
-                                        <img src="{{$item->attributes->image}}" alt="product">
-                                    </a>
-                                </figure>
-                                <a href="#" class="btn-remove" title="Remove Product" onclick="removeItem({{$item->id}},'{{route('store.removeCart',$item->id)}}')"><i
-                                        class="icon-close"></i></a>
-                            </div><!-- End .product -->
-                            @endforeach
-
+                        <div class="dropdown-cart-products" id="cart-product">
                         </div><!-- End .cart-product -->
 
                         <div class="dropdown-cart-total">

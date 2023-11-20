@@ -116,7 +116,7 @@
                                     <h3 class="product-title"><a href="{{route('store.productDetail',$product->id_produk)}}">{{$product->nama_produk}}
                                         </a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        Rp.{{$product->harga_jual}}
+                                        @currency($product->harga_jual)
                                     </div><!-- End .product-price -->
                                 </div><!-- End .product-body -->
                             </div><!-- End .product -->
@@ -217,7 +217,7 @@
                                         </div><!-- End .product-cat -->
                                         <h3 class="product-title"><a href="{{route('store.productDetail',$product->id_produk)}}">{{$product->nama_produk}}</a></h3><!-- End .product-title -->
                                         <div class="product-price">
-                                            Rp. {{$product->harga_jual}}
+                                            @currency($product->harga_jual)
                                         </div><!-- End .product-price -->
                                     </div><!-- End .product-body -->
                                 </div><!-- End .product -->

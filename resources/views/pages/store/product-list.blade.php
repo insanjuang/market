@@ -2,7 +2,7 @@
 @section('content')
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">Daftar Produk<span>Kategori : {{$kategori}}</span></h1>
+            <h1 class="page-title">Daftar Produk<span>Kategori : {{$kategori->nama_kategori}}</span></h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
@@ -72,7 +72,7 @@
                                     <h3 class="product-title"><a href="{{route('store.productDetail',$product->id_produk)}}">{{$product->nama_produk}}</a></h3>
                                     <!-- End .product-title -->
                                     <div class="product-price">
-                                        Rp. {{$product->harga_jual}}
+                                        @currency($product->harga_jual)
                                     </div><!-- End .product-price -->
                                     {{-- <div class="ratings-container">
                                         <div class="ratings">

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Products\Images;
 use App\Models\Products\Category;
 use App\Models\Entities\Supplier;
+use App\Models\Transaction\StoresDetail;
+
 
 class Product extends Model
 {
@@ -31,5 +33,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function storesDetail()
+    {
+        return $this->belongsTo(StoresDetail::class);
     }
 }

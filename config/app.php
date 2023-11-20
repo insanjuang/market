@@ -188,6 +188,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -254,7 +255,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
-        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         // 'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         // 'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 

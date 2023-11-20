@@ -15,14 +15,14 @@
         </a>
     </div>
     <!-- /Logo -->
-    
+
     <!-- Header Menu -->
     <ul class="nav user-menu">
-    
+
         <!-- Search -->
         <li class="nav-item">
             <div class="top-nav-search">
-                
+
                 <a href="javascript:void(0);" class="responsive-search">
                     <i class="fa fa-search"></i>
             </a>
@@ -38,7 +38,7 @@
             </div>
         </li>
         <!-- /Search -->
-    
+
         <!-- Flag -->
         <li class="nav-item dropdown has-arrow flag-nav">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
@@ -60,7 +60,7 @@
             </div>
         </li>
         <!-- /Flag -->
-    
+
         <!-- Notifications -->
         <li class="nav-item dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
@@ -146,7 +146,7 @@
             </div>
         </li>
         <!-- /Notifications -->
-        
+
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                 <span class="user-img"><img src="{{ URL::asset('/assets/img/profiles/avator1.jpg')}}" alt="">
@@ -172,7 +172,7 @@
         </li>
     </ul>
     <!-- /Header Menu -->
-    
+
     <!-- Mobile Menu -->
     <div class="dropdown mobile-user-menu">
         <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -242,7 +242,7 @@
                             <img src="{{ URL::asset('/assets/img/product/product61.png')}}" alt="img">
                             <h6>Cycles</h6>
                         </a>
-                    </li>	
+                    </li>
                     <li id="fruits1">
                         <div class="product-details " >
                             <img src="{{ URL::asset('/assets/img/product/product62.png')}}" alt="img">
@@ -291,7 +291,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-3 col-sm-6 d-flex ">
                                 <div class="productset flex-fill">
                                     <div class="productsetimg">
@@ -468,7 +468,7 @@
                     </div>
                     <div class="tab_content" data-tab="computer">
                         <div class="row">
-                            
+
                             <div class="col-lg-3 col-sm-6 d-flex ">
                                 <div class="productset flex-fill">
                                     <div class="productsetimg">
@@ -626,7 +626,7 @@
                     </div>
                     <div  class="tab_content" data-tab="fruits1">
                         <div class="row ">
-                            
+
                             <div class="col-lg-3 col-sm-6 d-flex ">
                                 <div class="productset flex-fill">
                                     <div class="productsetimg">
@@ -659,7 +659,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-3 col-sm-6 d-flex ">
                                 <div class="productset flex-fill">
                                     <div class="productsetimg">
@@ -676,7 +676,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <div class="col-lg-3 col-sm-6 d-flex ">
                                 <div class="productset flex-fill">
                                     <div class="productsetimg">
@@ -827,7 +827,7 @@
                                             <img src="{{ URL::asset('/assets/img/product/product30.jpg')}}" alt="img">
                                         </div>
                                         <div class="productcontet">
-                                            <h4>Pineapple 
+                                            <h4>Pineapple
                                             <a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="{{ URL::asset('/assets/img/icons/edit-5.svg')}}" alt="img"></a>
                                             </h4>
                                             <div class="productlinkset">
@@ -836,7 +836,7 @@
                                             <div class="increment-decrement">
                                                 <div class="input-groups">
                                                     <input type="button" value="-"  class="button-minus dec button">
-                                                    <input type="text" name="child"  value="0" class="quantity-field">
+                                                    <input type="text" name="child"  value="0" class="quantity-field" id="qty-5">
                                                     <input type="button" value="+"  class="button-plus inc button ">
                                                 </div>
                                             </div>
@@ -853,16 +853,16 @@
                                             <img src="{{ URL::asset('/assets/img/product/product34.jpg')}}" alt="img">
                                         </div>
                                         <div class="productcontet">
-                                            <h4>Green Nike 
+                                            <h4>Green Nike
                                             <a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="{{ URL::asset('/assets/img/icons/edit-5.svg')}}" alt="img"></a>
                                             </h4>
                                             <div class="productlinkset">
                                                 <h5>PT001</h5>
-                                            </div> 
+                                            </div>
                                             <div class="increment-decrement">
                                                 <div class="input-groups">
                                                     <input type="button" value="-"  class="button-minus dec button">
-                                                    <input type="text" name="child"  value="0" class="quantity-field">
+                                                    <input type="text" name="child"  value="0" class="quantity-field" id="qty-3">
                                                     <input type="button" value="+"  class="button-plus inc button ">
                                                 </div>
                                             </div>
@@ -888,7 +888,7 @@
                                             <div class="increment-decrement">
                                                 <div class="input-groups">
                                                     <input type="button" value="-"  class="button-minus dec button">
-                                                    <input type="text" name="child"  value="0" class="quantity-field">
+                                                    <input type="text" name="child"  value="0" class="quantity-field" id="qty-2">
                                                     <input type="button" value="+"  class="button-plus inc button ">
                                                 </div>
                                             </div>
@@ -914,7 +914,7 @@
                                             <div class="increment-decrement">
                                                 <div class="input-groups">
                                                     <input type="button" value="-"  class="button-minus dec button">
-                                                    <input type="text" name="child"  value="0" class="quantity-field">
+                                                    <input type="text" name="child"  value="0" class="quantity-field" id="qty-1">
                                                     <input type="button" value="+"  class="button-plus inc button ">
                                                 </div>
                                             </div>
@@ -966,11 +966,11 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>		
+                        </div>
                         <div class="btn-totallabel">
                             <h5>Checkout</h5>
                             <h6>60.00$</h6>
-                        </div>							
+                        </div>
                         <div class="btn-pos">
                             <ul>
                                 <li>
@@ -996,6 +996,6 @@
         </div>
     </div>
 </div>
-@component('components.modal-popup')                
-@endcomponent
+{{-- @component('components.modal-popup')
+@endcomponent --}}
 @endsection

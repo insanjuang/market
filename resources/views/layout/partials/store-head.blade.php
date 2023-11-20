@@ -31,8 +31,13 @@
 
 
 <!-- Main CSS File -->
+@if (Route::is(['store.checkout']))
+<link rel="stylesheet" href="{{url('assets/css/custom.css')}}">
+@endif
 <link rel="stylesheet" href="{{url('assets/css/store-style.css')}}">
 @if (Route::is(['store']))
 <link rel="stylesheet" href="{{url('assets/css/store-skin.css')}}">
 <link rel="stylesheet" href="{{url('assets/css/store.css')}}">
 @endif
+
+

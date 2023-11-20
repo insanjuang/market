@@ -58,7 +58,9 @@ const folder = {
     mix.copy('resources/css/store.css', 'public/assets/css');
     mix.copy('resources/css/store-style.css', 'public/assets/css');
     mix.copy('resources/css/store-skin.css', 'public/assets/css');
+    mix.copy('resources/css/custom.css', 'public/assets/css');
     mix.copy('resources/js/script.js', 'public/assets/js');
+    mix.copy('resources/js/custom', 'public/assets/js/custom/pages');
     mix.copy('resources/js/fileupload.min.js', 'public/assets/plugins/fileupload');
     mix.copy('resources/js/pages/apex-chart-data.js', 'public/assets/plugins/apexchart/chart-data.js');
     mix.copy('resources/css/dataTables.bootstrap4.min.css', 'public/assets/css');
@@ -88,7 +90,6 @@ const folder = {
     mix.copy('resources/js/pages/toastr.js', 'public/assets/plugins/toastr');
     mix.copy('resources/js/sweetalerts.min.js', 'public/assets/plugins/sweetalert');
     mix.copy('resources/js/jquery.plugin.min.js', 'public/assets/js');
-    mix.copy('resources/js/store.js', 'public/assets/js');
     mix.copy('resources/js/store-main.js', 'public/assets/js');
     mix.copy('resources/css/form-wizard.css', 'public/assets/plugins/twitter-bootstrap-wizard');
     mix.copy('node_modules/bootstrap/dist/css/bootstrap.css', 'public/assets/css');
